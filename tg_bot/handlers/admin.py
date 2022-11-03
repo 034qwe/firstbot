@@ -19,6 +19,10 @@ async def add_admin(message:types.Message):
             await message.answer('Enter id a new admin after command')     
         
         elif  message.from_user.id == ID:
+            if ID not in [i for i in sqlite1.id_admin()]:
+                sqlite1.sql_add2(ID)
+                
+            
             txt = message.text.replace('/add_admin','').replace(' ','').replace('\n','')
             await sqlite1.sql_add2(txt)
             await message.answer('id added in database')
